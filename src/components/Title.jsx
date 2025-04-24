@@ -1,0 +1,13 @@
+import React from 'react'
+
+const Title = () => {
+    return (
+        <>
+            <div className='flex items-center justify-center my-4'>
+                <h1 className='text-3xl font-bold text-gray-300'>Favorite Movies List</h1>
+            </div>
+        </>
+    )
+}
+
+export default Title
