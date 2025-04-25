@@ -3,8 +3,8 @@ import { useSelector } from 'react-redux'
 const TotalMovies = () => {
     const favorite = useSelector(state => state.isFavorite)
     const movies = useSelector(state => state.movies)
-   
-console.log(favorite);
+
+    console.log(favorite);
 
     return (
         <>

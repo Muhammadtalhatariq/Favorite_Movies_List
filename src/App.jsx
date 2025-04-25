@@ -5,11 +5,11 @@ import { Form, Formik } from 'formik';
 import AllMovies from './components/AllMovies';
 import { useDispatch } from 'react-redux';
 import { addmovie } from './features/movies/MovieSlice';
-
+import { ToastContainer, toast } from 'react-toastify';
 
 
 const App = () => {
-
+  const notify = () => toast("Add Movie");
   const dispatch = useDispatch()
   return (
     <>
@@ -31,7 +31,8 @@ const App = () => {
                 type="text"
                 placepolder="enter your favorite movie"
               />
-              <button className='px-4 py-1 bg-red-400 rounded-xl' type='submit'>addtodo</button>
+              <button onClick={notify} className='px-4 py-1 bg-red-400 rounded-xl' type='submit'>Add Movie</button>
+              <ToastContainer />
             </div>
 
           </Form>
