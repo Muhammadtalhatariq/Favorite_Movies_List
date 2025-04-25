@@ -7,14 +7,11 @@ const AddMovie = ({ ...props }) => {
     // console.log(field, meta);
     return (
         <>
-
             <div className='flex items-center justify-center'>
-                <div className='w-72 md:w-96'>
+                <div className='w-64 md:w-96'>
                     <Input {...field} {...props} />
                 </div>
             </div>
-
-
         </>
     )
 }
