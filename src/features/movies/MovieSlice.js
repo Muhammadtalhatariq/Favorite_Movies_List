@@ -13,13 +13,14 @@ export const MovieSlice = createSlice({
   initialState,
   reducers: {
     addmovie: (state, action) => {
-      const movie = {
+      const { movie, urlmovie } = action.payload;
+      const movieData = {
         id: nanoid(),
-        movieName: action.payload,
-        urlmovie: action.payload
+        movieName: movie,
+        urlmovie: urlmovie
       }
-      console.log(movie);
-      state.movies.push(movie)
+      state.movies.push(movieData)
+      console.log(movieData,"moviedata redux");
 
     },
     removemovie: (state, action) => {
@@ -36,10 +37,6 @@ export const MovieSlice = createSlice({
   },
 
 })
-
-
-
-
 
 
 export const { addmovie, removemovie, favoritemovie } = MovieSlice.actions

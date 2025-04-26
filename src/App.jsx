@@ -6,47 +6,53 @@ import AllMovies from './components/AllMovies';
 import { useDispatch } from 'react-redux';
 import { addmovie } from './features/movies/MovieSlice';
 import { ToastContainer, toast } from 'react-toastify';
-
+import { validation } from "../src/validation"
 
 const App = () => {
   const notify = () => toast("Add Movie");
   const dispatch = useDispatch()
   return (
     <>
-      <Title />
+   <div className='p-2'>
+   <Title />
       <Formik
         initialValues={{
           movie: '',
           urlmovie: ""
         }}
+        validationSchema={validation}
         onSubmit={(values) => {
-          dispatch(addmovie(values.movie))
-          // console.log({values});
+          const { movie, urlmovie } = values
+          dispatch(addmovie({ movie, urlmovie }))
+          notify()
+          console.log("databform", { movie, urlmovie });
         }}
+
       >
         {formik => (
           <Form onSubmit={formik.handleSubmit}>
-            <div className='flex gap-4 items-center  flex-col md:flex-row justify-center ml-1 flex-wrap'>
-              <div className='flex flex-col md:flex-row gap-4'>
-               <div className='flex flex-col gap-2'>
-               <label className='font-semibold ' htmlFor="movie">Movie Name:</label>      <AddMovie
-                  name="movie"
-                  type="text"
-                  id="movie"
-                  placepolder="Enter your favorite movie"
-                />
-               </div>
-              <div className='flex flex-col gap-2'>
-              <label className='font-semibold' htmlFor="movieurl">Movie Name:</label>
-                <AddMovie
-                  name="urlmovie"
-                  id="movieurl"
-                  placepolder="Enter movie url"
-                />
+            <div className='flex gap-4 items-center flex-col justify-center  flex-wrap '>
+              <div className='flex flex-col gap-4'>
+                <div className='flex flex-col gap-2'>
+                  <label className='font-semibold ' htmlFor="movie">Movie Name:</label>
+                  <AddMovie
+                    name="movie"
+                    type="text"
+                    id="movie"
+                    placepolder="Enter your favorite movie"
+                  />
+                </div>
+                <div className='flex flex-col gap-2'>
+                  <label className='font-semibold' htmlFor="movieurl">Movie Url:</label>
+                  <AddMovie
+                    name="urlmovie"
+                    id="movieurl"
+                    placepolder="Enter movie url"
+                  />
+                </div>
               </div>
-              </div>
-              <div className='mt-7'>
-              <button onClick={notify} className='md:px-4 py-1 px-1 bg-red-400 rounded-xl' type='submit'>Add Movie</button>
+              <div>
+                <button className='md:px-4 py-1 px-1 bg-green-100 hover:text-white hover:bg-green-400 rounded-xl font-semibold duration-1000 cursor-pointer' type='submit'>Add Movie</button>
               </div>
               <ToastContainer />
             </div>
@@ -55,6 +61,7 @@ const App = () => {
       </Formik>
 
       <AllMovies />
+   </div>
     </>
   )
 }
