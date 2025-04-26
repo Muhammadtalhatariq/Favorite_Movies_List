@@ -5,11 +5,19 @@ import { useSelector, useDispatch } from 'react-redux';
 import { favoritemovie, removemovie } from '../features/movies/MovieSlice';
 import TotalMovies from './TotalMovies';
 import { toast } from 'react-toastify';
-
+import { FaHeart, FaRegHeart } from 'react-icons/fa';
 const AllMovies = () => {
     const onNotify = () => toast("Delete Movie");
     const dispatch = useDispatch()
-    const movies = useSelector(state => state.movies.movies)
+    const { movies, showOnlyFavorites } = useSelector(state => state.movies);
+
+    const filteredMovies = showOnlyFavorites
+        ? movies.filter(movie => movie.isFavorite)
+        : movies;
+
+        // console.log(filteredMovies.length);
+        
+        
     return (
         <>
             <div className='flex flex-col items-center justify-center gap-2 my-4'>
@@ -17,12 +25,14 @@ const AllMovies = () => {
                     <TotalMovies />
                 </div>
                 <div className='w-full flex justify-center items-center flex-wrap gap-2 md:gap-4 py-8'>
-                    {movies.map((movie) => (
+                    {filteredMovies.map((movie) => (
                         <div key={movie.id} className=' md:w-98 w-80 h-80  rounded-lg overflow-hidden'>
                             <div className='w-full h-68 relative'>
                                 <div className='absolute flex gap-4 md:left-38 left-28 top-40'>
                                     <div className='p-2 hover:bg-neutral-300 duration-700 border border-white rounded-full cursor-pointer'>
-                                        <CiHeart className='text-white' size={25} />
+                                        <CiHeart
+                                            onClick={() => dispatch(favoritemovie(movie.id))}
+                                            className={`${movie.isFavorite ?  <FaHeart color='bg-red-400' />: "bg-green-400"}`} size={25} />
                                     </div>
                                     <div className='p-2 hover:bg-neutral-300 duration-700 border border-white  rounded-full cursor-pointer'>
                                         <MdOutlineDelete

@@ -13,7 +13,7 @@ const App = () => {
   const dispatch = useDispatch()
   return (
     <>
-   <div className='p-2'>
+   <div className=''>
    <Title />
       <Formik
         initialValues={{
@@ -25,7 +25,7 @@ const App = () => {
           const { movie, urlmovie } = values
           dispatch(addmovie({ movie, urlmovie }))
           notify()
-          console.log("databform", { movie, urlmovie });
+          // console.log("databform", { movie, urlmovie });
         }}
 
       >

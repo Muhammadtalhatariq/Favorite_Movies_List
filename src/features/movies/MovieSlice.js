@@ -1,11 +1,11 @@
-import { createSlice, nanoid } from '@reduxjs/toolkit'
+import { createSlice, nanoid, createSelector } from '@reduxjs/toolkit'
 import { toast } from 'react-toastify';
 
 const onNotify = () => toast("Delete Movie");
 
 const initialState = {
   movies: [],
-  isFavorite: []
+  showOnlyFavorites: false
 }
 
 export const MovieSlice = createSlice({
@@ -17,28 +17,33 @@ export const MovieSlice = createSlice({
       const movieData = {
         id: nanoid(),
         movieName: movie,
-        urlmovie: urlmovie
+        urlmovie: urlmovie,
+        isFavorite: false,
       }
       state.movies.push(movieData)
-      console.log(movieData,"moviedata redux");
+      // console.log(movieData,"moviedata redux");
+      console.log("state movies", state.movies);
+
 
     },
+
+
     removemovie: (state, action) => {
       state.movies = state.movies.filter((movie) => movie.id !== action.payload)
       onNotify()
     },
     favoritemovie: (state, action) => {
-      const favrt = state.movies.filter((movie) => movie.id == action.payload)
-      state.isFavorite.push(favrt)
-      const favorite = state.movies.isFavorite
-      // console.log(favorite);
-    }
+      const movie = state.movies.find(movie => movie.id === action.payload);
+      console.log("movie favrt", movie);
 
+      if (movie) movie.isFavorite = !movie.isFavorite;
+    },
+    toggleShowFavorites: (state) => {
+      state.showOnlyFavorites = !state.showOnlyFavorites;
+    }
   },
 
 })
 
-
-export const { addmovie, removemovie, favoritemovie } = MovieSlice.actions
-
+export const { addmovie, removemovie, favoritemovie, toggleShowFavorites } = MovieSlice.actions
 export default MovieSlice.reducer
