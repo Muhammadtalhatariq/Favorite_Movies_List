@@ -6,18 +6,26 @@ import { favoritemovie, removemovie } from '../features/movies/MovieSlice';
 import TotalMovies from './TotalMovies';
 import { toast } from 'react-toastify';
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
+
+import { addFavorite, removeFavorite } from '../features/movies/FavoriteSlice';
 const AllMovies = () => {
     const onNotify = () => toast("Delete Movie");
     const dispatch = useDispatch()
     const { movies, showOnlyFavorites } = useSelector(state => state.movies);
 
+    const handleToggleFavorite = (movie) => {
+        dispatch(favoritemovie(movie.id));
+        if (!movie.isFavorite) {
+            dispatch(addFavorite(movie));
+        } else {
+            dispatch(removeFavorite(movie.id));
+        }
+    };
+
     const filteredMovies = showOnlyFavorites
         ? movies.filter(movie => movie.isFavorite)
         : movies;
 
-        // console.log(filteredMovies.length);
-        
-        
     return (
         <>
             <div className='flex flex-col items-center justify-center gap-2 my-4'>
@@ -31,8 +39,8 @@ const AllMovies = () => {
                                 <div className='absolute flex gap-4 md:left-38 left-28 top-40'>
                                     <div className='p-2 hover:bg-neutral-300 duration-700 border border-white rounded-full cursor-pointer'>
                                         <CiHeart
-                                            onClick={() => dispatch(favoritemovie(movie.id))}
-                                            className={`${movie.isFavorite ?  <FaHeart color='bg-red-400' />: "bg-green-400"}`} size={25} />
+                                            onClick={() => handleToggleFavorite(movie)}
+                                            className={`${movie.isFavorite ? <FaHeart color='bg-red-400' /> : "bg-green-400"}`} size={25} />
                                     </div>
                                     <div className='p-2 hover:bg-neutral-300 duration-700 border border-white  rounded-full cursor-pointer'>
                                         <MdOutlineDelete

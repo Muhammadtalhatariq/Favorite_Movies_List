@@ -10,7 +10,6 @@ const AddMovie = ({ ...props }) => {
                 <div className='w-64 md:w-[600px]'>
                     <Input {...field} {...props} />
                 </div>
-        
             </div>
             {meta.touched && meta.error ? (
                 <div className="error text-red-500 text-sm font-medium">{meta.error}</div>

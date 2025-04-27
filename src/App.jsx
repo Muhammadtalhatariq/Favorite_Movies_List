@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import Title from './components/Title'
 import AddMovie from './components/AddMovie'
 import { Form, Formik } from 'formik';
@@ -13,55 +13,55 @@ const App = () => {
   const dispatch = useDispatch()
   return (
     <>
-   <div className=''>
-   <Title />
-      <Formik
-        initialValues={{
-          movie: '',
-          urlmovie: ""
-        }}
-        validationSchema={validation}
-        onSubmit={(values) => {
-          const { movie, urlmovie } = values
-          dispatch(addmovie({ movie, urlmovie }))
-          notify()
-          // console.log("databform", { movie, urlmovie });
-        }}
+      <div className=''>
+        <Title />
+        <Formik
+          initialValues={{
+            movie: '',
+            urlmovie: ""
+          }}
+          validationSchema={validation}
+          onSubmit={(values) => {
+            const { movie, urlmovie } = values
+            dispatch(addmovie({ movie, urlmovie }))
+            notify()
+            // console.log("databform", { movie, urlmovie });
+          }}
 
-      >
-        {formik => (
-          <Form onSubmit={formik.handleSubmit}>
-            <div className='flex gap-4 items-center flex-col justify-center  flex-wrap '>
-              <div className='flex flex-col gap-4'>
-                <div className='flex flex-col gap-2'>
-                  <label className='font-semibold ' htmlFor="movie">Movie Name:</label>
-                  <AddMovie
-                    name="movie"
-                    type="text"
-                    id="movie"
-                    placepolder="Enter your favorite movie"
-                  />
+        >
+          {formik => (
+            <Form onSubmit={formik.handleSubmit}>
+              <div className='flex gap-4 items-center flex-col justify-center  flex-wrap '>
+                <div className='flex flex-col gap-4'>
+                  <div className='flex flex-col gap-2'>
+                    <label className='font-semibold ' htmlFor="movie">Movie Name:</label>
+                    <AddMovie
+                      name="movie"
+                      type="text"
+                      id="movie"
+                      placepolder="Enter your favorite movie"
+                    />
+                  </div>
+                  <div className='flex flex-col gap-2'>
+                    <label className='font-semibold' htmlFor="movieurl">Movie Url:</label>
+                    <AddMovie
+                      name="urlmovie"
+                      id="movieurl"
+                      placepolder="Enter movie url"
+                    />
+                  </div>
                 </div>
-                <div className='flex flex-col gap-2'>
-                  <label className='font-semibold' htmlFor="movieurl">Movie Url:</label>
-                  <AddMovie
-                    name="urlmovie"
-                    id="movieurl"
-                    placepolder="Enter movie url"
-                  />
+                <div>
+                  <button className='md:px-4 py-1 px-1 bg-green-100 hover:text-white hover:bg-green-400 rounded-xl font-semibold duration-1000 cursor-pointer' type='submit'>Add Movie</button>
                 </div>
+                <ToastContainer />
               </div>
-              <div>
-                <button className='md:px-4 py-1 px-1 bg-green-100 hover:text-white hover:bg-green-400 rounded-xl font-semibold duration-1000 cursor-pointer' type='submit'>Add Movie</button>
-              </div>
-              <ToastContainer />
-            </div>
-          </Form>
-        )}
-      </Formik>
+            </Form>
+          )}
+        </Formik>
 
-      <AllMovies />
-   </div>
+        <AllMovies />
+      </div>
     </>
   )
 }

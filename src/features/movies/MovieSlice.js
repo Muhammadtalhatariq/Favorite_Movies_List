@@ -21,12 +21,7 @@ export const MovieSlice = createSlice({
         isFavorite: false,
       }
       state.movies.push(movieData)
-      // console.log(movieData,"moviedata redux");
-      console.log("state movies", state.movies);
-
-
     },
-
 
     removemovie: (state, action) => {
       state.movies = state.movies.filter((movie) => movie.id !== action.payload)
@@ -34,15 +29,12 @@ export const MovieSlice = createSlice({
     },
     favoritemovie: (state, action) => {
       const movie = state.movies.find(movie => movie.id === action.payload);
-      console.log("movie favrt", movie);
-
       if (movie) movie.isFavorite = !movie.isFavorite;
     },
     toggleShowFavorites: (state) => {
       state.showOnlyFavorites = !state.showOnlyFavorites;
     }
   },
-
 })
 
 export const { addmovie, removemovie, favoritemovie, toggleShowFavorites } = MovieSlice.actions
