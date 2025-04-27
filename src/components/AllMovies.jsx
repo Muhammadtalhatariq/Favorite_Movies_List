@@ -6,9 +6,10 @@ import { favoritemovie, removemovie } from '../features/movies/MovieSlice';
 import TotalMovies from './TotalMovies';
 import { toast } from 'react-toastify';
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
-
 import { addFavorite, removeFavorite } from '../features/movies/FavoriteSlice';
+
 const AllMovies = () => {
+
     const onNotify = () => toast("Delete Movie");
     const dispatch = useDispatch()
     const { movies, showOnlyFavorites } = useSelector(state => state.movies);
@@ -37,15 +38,21 @@ const AllMovies = () => {
                         <div key={movie.id} className=' md:w-98 w-80 h-80  rounded-lg overflow-hidden'>
                             <div className='w-full h-68 relative'>
                                 <div className='absolute flex gap-4 md:left-38 left-28 top-40'>
-                                    <div className='p-2 hover:bg-neutral-300 duration-700 border border-white rounded-full cursor-pointer'>
-                                        <CiHeart
-                                            onClick={() => handleToggleFavorite(movie)}
-                                            className={`${movie.isFavorite ? <FaHeart color='bg-red-400' /> : "bg-green-400"}`} size={25} />
+                                    <div className='p-2 hover:bg-neutral-300 duration-700 border border-white overflow-hidden rounded-full cursor-pointer'>
+                                        <button
+                                        className='flex items-center justify-center'
+                                        onClick={() => handleToggleFavorite(movie)}>
+                                            {movie.isFavorite ? (
+                                                <FaHeart size={20} color="red" />
+                                            ) : (
+                                                <FaRegHeart size={20} color="gray" />
+                                            )}
+                                        </button>
                                     </div>
                                     <div className='p-2 hover:bg-neutral-300 duration-700 border border-white  rounded-full cursor-pointer'>
                                         <MdOutlineDelete
                                             onClick={() => dispatch(removemovie(movie.id))}
-                                            className='text-white' size={25} />
+                                            className='text-white' size={20} />
                                     </div>
                                 </div>
                                 <img className='bg-contain h-60 w-full' src={movie.urlmovie} alt="movie image" />
