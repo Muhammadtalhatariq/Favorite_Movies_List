@@ -45,7 +45,7 @@ const AllMovies = () => {
                                             {movie.isFavorite ? (
                                                 <FaHeart size={20} color="red" />
                                             ) : (
-                                                <FaRegHeart size={20} color="gray" />
+                                                <FaRegHeart size={20} color="white" />
                                             )}
                                         </button>
                                     </div>

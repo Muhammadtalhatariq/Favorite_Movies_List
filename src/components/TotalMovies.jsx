@@ -9,17 +9,17 @@ const TotalMovies = () => {
 
     return (
         <>
-            <div className='flex items-center-center gap-4'>
-                <div className='bg-green-100 p-2'>
-                    <span className='font-semibold'>Total Movies :</span> <span className='text-red-500 font-medium'> {movies.length}</span>
+            <div className='flex items-center-center justify-center md:gap-4 gap-2 flex-wrap'>
+                <div className='bg-green-100 md:p-2 p-1 flex items-center justify-center'>
+                    <span className='font-semibold '>Total Movies : </span> <span className='text-red-500 font-medium '> {movies.length}</span>
                 </div>
-                <div className='bg-green-100 p-2'>
-                    <span className='font-semibold'>Total Favorite:</span> <span className='text-red-500 font-medium'>{favoriteMovies.length}</span>
+                <div className='bg-green-100 md:p-2 p-1'>
+                    <span className='font-semibold '>Total Favorite : </span> <span className='text-red-500 font-medium'>{favoriteMovies.length}</span>
                 </div>
                 <button
                     className='bg-green-100 hover:bg-green-400 font-semibold duration-500 cursor-pointer p-2 hover:text-white'
                     onClick={() => dispatch(toggleShowFavorites())}>
-                    {showOnlyFavorites ? "Show all Movies" : "Show Favorites Movies"}
+                    {showOnlyFavorites ? "Show all Movies" : "Favorites Movies"}
                 </button>
 
             </div>
