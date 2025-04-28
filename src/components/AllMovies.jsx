@@ -1,6 +1,5 @@
 import React from 'react'
 import { MdOutlineDelete } from "react-icons/md";
-import { CiHeart } from "react-icons/ci";
 import { useSelector, useDispatch } from 'react-redux';
 import { favoritemovie, removemovie } from '../features/movies/MovieSlice';
 import TotalMovies from './TotalMovies';
@@ -11,9 +10,9 @@ import { addFavorite, removeFavorite } from '../features/movies/FavoriteSlice';
 const AllMovies = () => {
 
     const onNotify = () => toast("Delete Movie");
-    const dispatch = useDispatch()
     const { movies, showOnlyFavorites } = useSelector(state => state.movies);
-
+    const dispatch = useDispatch()
+    
     const handleToggleFavorite = (movie) => {
         dispatch(favoritemovie(movie.id));
         if (!movie.isFavorite) {
