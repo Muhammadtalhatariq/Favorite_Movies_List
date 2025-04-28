@@ -9,11 +9,11 @@ const TotalMovies = () => {
 
     return (
         <>
-            <div className='flex items-center-center justify-center md:gap-4 gap-2 flex-wrap'>
-                <div className='bg-green-100 md:p-2 p-1'>
+            <div className='flex justify-center gap-4 flex-wrap'>
+                <div className='bg-green-100 p-2 ' >
                     <span className='font-semibold '>Total Movies : </span> <span className='text-red-500 font-medium '> {movies.length}</span>
                 </div>
-                <div className='bg-green-100 md:p-2 p-1'>
+                <div className='bg-green-100 p-2'>
                     <span className='font-semibold '>Favorites Movies : </span> <span className='text-red-500 font-medium'>{favoriteMovies.length}</span>
                 </div>
                 <button

@@ -39,7 +39,6 @@ const App = () => {
                       name="movie"
                       type="text"
                       id="movie"
-                      placepolder="Enter your favorite movie"
                     />
                   </div>
                   <div className='flex flex-col gap-2'>
@@ -47,12 +46,11 @@ const App = () => {
                     <AddMovie
                       name="urlmovie"
                       id="movieurl"
-                      placepolder="Enter movie url"
                     />
                   </div>
                 </div>
                 <div>
-                  <button className='md:px-4 w-72 md:w-[600px]  py-1 px-1 bg-green-100 hover:text-white hover:bg-green-400 rounded-lg font-semibold duration-1000 cursor-pointer' type='submit'>Add Movie</button>
+                  <button className='md:px-4 w-80 md:w-[600px]  py-1 px-1 bg-green-100 hover:text-white hover:bg-green-400 rounded-lg font-semibold duration-1000 cursor-pointer' type='submit'>Add Movie</button>
                 </div>
                 <ToastContainer />
               </div>
