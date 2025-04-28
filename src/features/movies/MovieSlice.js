@@ -30,6 +30,7 @@ export const MovieSlice = createSlice({
     favoritemovie: (state, action) => {
       const movie = state.movies.find(movie => movie.id === action.payload);
       if (movie) movie.isFavorite = !movie.isFavorite;
+  
     },
     toggleShowFavorites: (state) => {
       state.showOnlyFavorites = !state.showOnlyFavorites;

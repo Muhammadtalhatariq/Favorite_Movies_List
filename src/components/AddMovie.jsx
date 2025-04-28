@@ -3,7 +3,8 @@ import { Input } from 'antd';
 import { useField } from 'formik';
 
 const AddMovie = ({ ...props }) => {
-    const [field, meta] = useField(props)
+    const [field, meta] = useField(props) 
+    
     return (
         <>
             <div className='flex items-center '>

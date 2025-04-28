@@ -9,7 +9,6 @@ import { addFavorite, removeFavorite } from '../features/movies/FavoriteSlice';
 
 const AllMovies = () => {
 
-    const onNotify = () => toast("Delete Movie");
     const { movies, showOnlyFavorites } = useSelector(state => state.movies);
     const dispatch = useDispatch()
 
@@ -29,9 +28,9 @@ const AllMovies = () => {
     if (filteredMovies.length === 0) {
         return (
             <>
-                <div>
-                    <TotalMovies />
-                </div>
+
+                <TotalMovies />
+
                 <div className='flex flex-col items-center justify-center gap-2 my-4 h-80'>
                     <img src="/empty.png" alt="" />
                 </div>
@@ -46,13 +45,14 @@ const AllMovies = () => {
                         <TotalMovies />
                     </div>
                     <div className='w-full flex justify-center items-center flex-wrap gap-2 md:gap-4 py-8'>
+                      
                         {filteredMovies.map((movie) => (
                             <div key={movie.id} className=' md:w-98 w-80 h-80  rounded-lg overflow-hidden'>
                                 <div className='w-full h-68 relative'>
                                     <div className='absolute flex gap-4 md:left-38 left-28 top-40'>
                                         <div className='p-2 hover:bg-neutral-300 duration-700 border border-white overflow-hidden rounded-full cursor-pointer'>
                                             <button
-                                                className='flex items-center justify-center cursor-pointer' 
+                                                className='flex items-center justify-center cursor-pointer'
                                                 onClick={() => handleToggleFavorite(movie)}>
                                                 {movie.isFavorite ? (
                                                     <FaHeart size={20} color="red" />
@@ -74,6 +74,7 @@ const AllMovies = () => {
                         ))}
 
                     </div>
+                    
                 </div>
             </>
         )

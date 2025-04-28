@@ -13,7 +13,7 @@ const App = () => {
   const dispatch = useDispatch()
   return (
     <>
-      <div className=''>
+      <div >
         <Title />
         <Formik
           initialValues={{
@@ -57,7 +57,6 @@ const App = () => {
             </Form>
           )}
         </Formik>
-
         <AllMovies />
       </div>
     </>
