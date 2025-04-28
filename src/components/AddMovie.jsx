@@ -6,8 +6,8 @@ const AddMovie = ({ ...props }) => {
     const [field, meta] = useField(props)
     return (
         <>
-            <div className='flex items-center justify-center'>
-                <div className='w-64 md:w-[600px]'>
+            <div className='flex items-center '>
+                <div className='w-72 md:w-[600px] duration-1000'>
                     <Input {...field} {...props} />
                 </div>
             </div>

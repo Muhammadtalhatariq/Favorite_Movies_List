@@ -14,7 +14,7 @@ const TotalMovies = () => {
                     <span className='font-semibold '>Total Movies : </span> <span className='text-red-500 font-medium '> {movies.length}</span>
                 </div>
                 <div className='bg-green-100 md:p-2 p-1'>
-                    <span className='font-semibold '>Total Favorite : </span> <span className='text-red-500 font-medium'>{favoriteMovies.length}</span>
+                    <span className='font-semibold '>Favorites Movies : </span> <span className='text-red-500 font-medium'>{favoriteMovies.length}</span>
                 </div>
                 <button
                     className='bg-green-100 hover:bg-green-400 font-semibold duration-500 cursor-pointer p-2 hover:text-white'
