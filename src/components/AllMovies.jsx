@@ -3,7 +3,6 @@ import { MdOutlineDelete } from "react-icons/md";
 import { useSelector, useDispatch } from 'react-redux';
 import { favoritemovie, removemovie } from '../features/movies/MovieSlice';
 import TotalMovies from './TotalMovies';
-import { toast } from 'react-toastify';
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
 import { addFavorite, removeFavorite } from '../features/movies/FavoriteSlice';
 
@@ -45,7 +44,7 @@ const AllMovies = () => {
                         <TotalMovies />
                     </div>
                     <div className='w-full flex justify-center items-center flex-wrap gap-2 md:gap-4 py-8'>
-                      
+
                         {filteredMovies.map((movie) => (
                             <div key={movie.id} className=' md:w-98 w-80 h-80  rounded-lg overflow-hidden'>
                                 <div className='w-full h-68 relative'>
@@ -74,7 +73,7 @@ const AllMovies = () => {
                         ))}
 
                     </div>
-                    
+
                 </div>
             </>
         )

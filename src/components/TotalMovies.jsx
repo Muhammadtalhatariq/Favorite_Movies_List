@@ -6,6 +6,7 @@ const TotalMovies = () => {
     const { showOnlyFavorites, movies } = useSelector(state => state.movies);
     const { favoriteMovies } = useSelector(state => state.favorites);
     const dispatch = useDispatch()
+    
 
     return (
         <>
