@@ -1,7 +1,7 @@
 import React from 'react'
 import { MdOutlineDelete } from "react-icons/md";
 import { useSelector, useDispatch } from 'react-redux';
-import { favoritemovie, removemovie, addFavorite, removeFavorite,editmovie } from '../features/movies/MovieSlice';
+import { favoritemovie, removemovie, addFavorite, removeFavorite} from '../features/movies/MovieSlice';
 import TotalMovies from './TotalMovies';
 import { FaHeart, FaRegHeart, FaRegEdit }  from 'react-icons/fa';
 

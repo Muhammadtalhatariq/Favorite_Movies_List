@@ -1,14 +1,13 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { toggleShowFavorites } from '../features/movies/MovieSlice'
+import { toggleshowsfavorites } from '../features/movies/MovieSlice'
 
 const TotalMovies = () => {
-    const { showOnlyFavorites, movies } = useSelector(state => state.movies);
 
+    const { showOnlyFavorites, movies } = useSelector(state => state.movies);
     const favrtlength=  movies.filter(movie => movie.isFavorite).length
     const dispatch = useDispatch()
         
-
     return (
         <>
             <div className='flex justify-center gap-4 flex-wrap'>
@@ -20,7 +19,7 @@ const TotalMovies = () => {
                 </div>
                 <button
                     className='bg-green-100 hover:bg-green-400 font-semibold duration-500 cursor-pointer p-2 hover:text-white'
-                    onClick={() => dispatch(toggleShowFavorites())}>
+                    onClick={() => dispatch(toggleshowsfavorites())}>
                     {showOnlyFavorites ? "Show all Movies" : "Favorites Movies"}
                 </button>
 

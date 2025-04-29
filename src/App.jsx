@@ -11,20 +11,25 @@ import { useDispatch } from 'react-redux'
 const App = () => {
   const [editingMovie, setEditingMovie] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
-  const notify = (message) => toast(message);
+
+  const notify = () => toast("Movie updated successfully");
+  const onnotify = () => toast("Movie added successfully");
   const dispatch = useDispatch()
+
   const handleSubmit = (values) => {
+
     const { movie, urlmovie } = values;
+
     if (isEditing) {
       dispatch(editmovie({
         id: editingMovie.id,
         movieName: movie,
         urlmovie: urlmovie
       }));
-      notify("Movie updated successfully!");
+      notify();
     } else {
       dispatch(addmovie({ movie, urlmovie }));
-      notify("Movie added successfully!");
+      onnotify();
     }
     setIsEditing(false);
     setEditingMovie(null);
@@ -38,9 +43,13 @@ const App = () => {
     setIsEditing(false);
     setEditingMovie(null);
   };
+
+
+
   return (
     <>
       <div >
+
         <Title />
         <Formik
           initialValues={{
@@ -52,7 +61,9 @@ const App = () => {
           enableReinitialize
         >
           {formik => (
-            <Form onSubmit={formik.handleSubmit}>
+            <Form onSubmit={formik.handleSubmit} >
+
+
               <div className='flex gap-4 items-center flex-col justify-center  flex-wrap '>
                 <div className='flex flex-col gap-4'>
                   <div className='flex flex-col gap-2'>
@@ -71,8 +82,8 @@ const App = () => {
                     />
                   </div>
                 </div>
-                <div>
-                  <button className='md:px-4 w-80 md:w-[600px]  py-1 px-1 bg-green-100 hover:text-white hover:bg-green-400 rounded-lg font-semibold duration-1000 cursor-pointer' type='submit'>{isEditing ? 'Update Movie' : 'Add Movie'}</button>
+                <div className='flex gap-4'>
+                  <button className='md:px-4 w-40 md:w-[300px]  py-1 px-1 bg-green-100 hover:text-white hover:bg-green-400 rounded-lg font-semibold duration-1000 cursor-pointer' type='submit'>{isEditing ? 'Update Movie' : 'Add Movie'}</button>
                   {isEditing && (
                     <button
                       type="button"
@@ -88,7 +99,6 @@ const App = () => {
             </Form>
           )}
         </Formik>
-        {/* <AllMovies /> */}
         <AllMovies onEdit={handleEdit} />
       </div>
     </>
