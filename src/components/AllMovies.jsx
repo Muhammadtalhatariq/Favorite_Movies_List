@@ -1,18 +1,17 @@
 import React from 'react'
 import { MdOutlineDelete } from "react-icons/md";
 import { useSelector, useDispatch } from 'react-redux';
-import { favoritemovie, removemovie } from '../features/movies/MovieSlice';
+import { favoritemovie, removemovie, addFavorite, removeFavorite } from '../features/movies/MovieSlice';
 import TotalMovies from './TotalMovies';
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
-import { addFavorite, removeFavorite } from '../features/movies/FavoriteSlice';
 
 const AllMovies = () => {
 
     const { movies, showOnlyFavorites } = useSelector(state => state.movies);
     const dispatch = useDispatch()
-
+  
     const handleToggleFavorite = (movie) => {
-        dispatch(favoritemovie(movie.id));
+        dispatch(favoritemovie(movie));
         if (!movie.isFavorite) {
             dispatch(addFavorite(movie));
         } else {
@@ -27,13 +26,10 @@ const AllMovies = () => {
     if (filteredMovies.length === 0) {
         return (
             <>
-
                 <TotalMovies />
-
                 <div className='flex flex-col items-center justify-center gap-2 my-4 h-80'>
                     <img src="/empty.png" alt="" />
                 </div>
-
             </>
         )
     } else {
@@ -44,7 +40,6 @@ const AllMovies = () => {
                         <TotalMovies />
                     </div>
                     <div className='w-full flex justify-center items-center flex-wrap gap-2 md:gap-4 py-8'>
-
                         {filteredMovies.map((movie) => (
                             <div key={movie.id} className=' md:w-98 w-80 h-80  rounded-lg overflow-hidden'>
                                 <div className='w-full h-68 relative'>
@@ -71,15 +66,11 @@ const AllMovies = () => {
                                 </div>
                             </div>
                         ))}
-
                     </div>
-
                 </div>
             </>
         )
     }
-
-
 }
 
 export default AllMovies

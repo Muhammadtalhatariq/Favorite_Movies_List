@@ -9,8 +9,10 @@ import { ToastContainer, toast } from 'react-toastify';
 import { validation } from "../src/validation"
 
 const App = () => {
+  
   const notify = () => toast("Add Movie");
   const dispatch = useDispatch()
+
   return (
     <>
       <div >

@@ -22,21 +22,30 @@ export const MovieSlice = createSlice({
       }
       state.movies.push(movieData)
     },
-
     removemovie: (state, action) => {
       state.movies = state.movies.filter((movie) => movie.id !== action.payload)
       onNotify()
     },
     favoritemovie: (state, action) => {
-      const movie = state.movies.find(movie => movie.id === action.payload);
+      const movie = state.movies.find(movie => movie.id === action.payload.id);
       if (movie) movie.isFavorite = !movie.isFavorite;
-  
+
     },
     toggleShowFavorites: (state) => {
       state.showOnlyFavorites = !state.showOnlyFavorites;
+    },
+    addFavorite: (state, action) => {
+      if (!state.movies.find(movie => movie.id === action.payload.id)) {
+        state.movies.isFavorite.push(action.payload);
+      }
+    },
+    removeFavorite: (state, action) => {
+      state.Favorites = state.movies.filter(
+        movie => movie.id !== action.payload
+      );
     }
   },
 })
 
-export const { addmovie, removemovie, favoritemovie, toggleShowFavorites } = MovieSlice.actions
+export const { addmovie, removemovie, favoritemovie, toggleShowFavorites, addFavorite, removeFavorite } = MovieSlice.actions
 export default MovieSlice.reducer
