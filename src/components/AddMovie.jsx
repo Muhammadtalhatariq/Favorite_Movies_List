@@ -4,6 +4,7 @@ import { useField } from 'formik';
 
 const AddMovie = ({ ...props }) => {
     const [field, meta] = useField(props)
+    
     return (
         <>
             <div className='flex items-center '>
@@ -14,6 +15,7 @@ const AddMovie = ({ ...props }) => {
             {meta.touched && meta.error ? (
                 <div className="error text-red-500 text-sm font-medium">{meta.error}</div>
             ) : null}
+          
         </>
     )
 }

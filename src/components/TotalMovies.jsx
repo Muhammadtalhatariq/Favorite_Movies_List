@@ -4,9 +4,11 @@ import { toggleShowFavorites } from '../features/movies/MovieSlice'
 
 const TotalMovies = () => {
     const { showOnlyFavorites, movies } = useSelector(state => state.movies);
+
     const favrtlength=  movies.filter(movie => movie.isFavorite).length
     const dispatch = useDispatch()
         
+
     return (
         <>
             <div className='flex justify-center gap-4 flex-wrap'>
@@ -21,7 +23,9 @@ const TotalMovies = () => {
                     onClick={() => dispatch(toggleShowFavorites())}>
                     {showOnlyFavorites ? "Show all Movies" : "Favorites Movies"}
                 </button>
+
             </div>
+
         </>
     )
 }

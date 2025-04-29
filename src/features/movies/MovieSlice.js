@@ -19,6 +19,7 @@ export const MovieSlice = createSlice({
         movieName: movie,
         urlmovie: urlmovie,
         isFavorite: false,
+       
       }
       state.movies.push(movieData)
     },
@@ -43,9 +44,17 @@ export const MovieSlice = createSlice({
       state.Favorites = state.movies.filter(
         movie => movie.id !== action.payload
       );
-    }
+    },
+    editmovie: (state, action) => {
+      const { id, movieName, urlmovie } = action.payload;
+      const movieToEdit = state.movies.find(movie => movie.id === id);
+      if (movieToEdit) {
+        movieToEdit.movieName = movieName;
+        movieToEdit.urlmovie = urlmovie;
+      }
+    },
   },
 })
 
-export const { addmovie, removemovie, favoritemovie, toggleShowFavorites, addFavorite, removeFavorite } = MovieSlice.actions
+export const { addmovie, removemovie, favoritemovie, toggleShowFavorites, addFavorite, removeFavorite, editmovie } = MovieSlice.actions
 export default MovieSlice.reducer

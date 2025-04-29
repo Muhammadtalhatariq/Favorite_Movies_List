@@ -1,35 +1,55 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Title from './components/Title'
 import AddMovie from './components/AddMovie'
 import { Form, Formik } from 'formik';
 import AllMovies from './components/AllMovies';
-import { useDispatch } from 'react-redux';
-import { addmovie } from './features/movies/MovieSlice';
+import { addmovie, editmovie } from './features/movies/MovieSlice';
 import { ToastContainer, toast } from 'react-toastify';
 import { validation } from "../src/validation"
+import { useDispatch } from 'react-redux'
 
 const App = () => {
-  
-  const notify = () => toast("Add Movie");
+  const [editingMovie, setEditingMovie] = useState(null);
+  const [isEditing, setIsEditing] = useState(false);
+  const notify = (message) => toast(message);
   const dispatch = useDispatch()
+  const handleSubmit = (values) => {
+    const { movie, urlmovie } = values;
+    if (isEditing) {
+      dispatch(editmovie({
+        id: editingMovie.id,
+        movieName: movie,
+        urlmovie: urlmovie
+      }));
+      notify("Movie updated successfully!");
+    } else {
+      dispatch(addmovie({ movie, urlmovie }));
+      notify("Movie added successfully!");
+    }
+    setIsEditing(false);
+    setEditingMovie(null);
+  };
+  const handleEdit = (movie) => {
+    setEditingMovie(movie);
+    setIsEditing(true);
+  };
 
+  const handleCancel = () => {
+    setIsEditing(false);
+    setEditingMovie(null);
+  };
   return (
     <>
       <div >
         <Title />
         <Formik
           initialValues={{
-            movie: '',
-            urlmovie: ""
+            movie: editingMovie?.movieName || '',
+            urlmovie: editingMovie?.urlmovie || ""
           }}
           validationSchema={validation}
-          onSubmit={(values) => {
-            const { movie, urlmovie } = values
-            dispatch(addmovie({ movie, urlmovie }))
-            notify()
-            // console.log("databform", { movie, urlmovie });
-          }}
-
+          onSubmit={handleSubmit}
+          enableReinitialize
         >
           {formik => (
             <Form onSubmit={formik.handleSubmit}>
@@ -52,14 +72,24 @@ const App = () => {
                   </div>
                 </div>
                 <div>
-                  <button className='md:px-4 w-80 md:w-[600px]  py-1 px-1 bg-green-100 hover:text-white hover:bg-green-400 rounded-lg font-semibold duration-1000 cursor-pointer' type='submit'>Add Movie</button>
+                  <button className='md:px-4 w-80 md:w-[600px]  py-1 px-1 bg-green-100 hover:text-white hover:bg-green-400 rounded-lg font-semibold duration-1000 cursor-pointer' type='submit'>{isEditing ? 'Update Movie' : 'Add Movie'}</button>
+                  {isEditing && (
+                    <button
+                      type="button"
+                      onClick={handleCancel}
+                      className='md:px-4 w-40 md:w-[300px] py-1 px-1 bg-red-100 hover:text-white hover:bg-red-400 rounded-lg font-semibold duration-1000 cursor-pointer'
+                    >
+                      Cancel
+                    </button>
+                  )}.
                 </div>
                 <ToastContainer />
               </div>
             </Form>
           )}
         </Formik>
-        <AllMovies />
+        {/* <AllMovies /> */}
+        <AllMovies onEdit={handleEdit} />
       </div>
     </>
   )
