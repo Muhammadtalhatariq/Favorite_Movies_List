@@ -15,10 +15,9 @@ const App = () => {
 
   const updatetoast = () => toast("Movie updated successfully");
   const addtoast = () => toast("Movie added successfully");
-
   const dispatch = useDispatch()
 
-  const handleSubmit = (values) => {
+  const handleSubmit = (values,actions) => {
 
     const { movie, urlmovie } = values;
 
@@ -32,6 +31,7 @@ const App = () => {
     } else {
       dispatch(addmovie({ movie, urlmovie }));
       addtoast();
+      actions.resetForm()
     }
     setIsEditing(false);
     setEditingMovie(null);
