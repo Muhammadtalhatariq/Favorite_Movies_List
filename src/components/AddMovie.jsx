@@ -8,7 +8,7 @@ const AddMovie = ({ ...props }) => {
     return (
         <>
             <div className='flex items-center '>
-                <div className='w-80 md:w-[600px] duration-1000'>
+                <div className='w-80 md:w-[600px] duration-500'>
                     <Input {...field} {...props} />
                 </div>
             </div>

@@ -44,7 +44,7 @@ const AllMovies = ({onEdit}) => {
                             <div key={movie.id} className=' md:w-98 w-80 h-80  rounded-lg overflow-hidden'>
                                 <div className='w-full h-68 relative'>
                                     <div className='absolute flex gap-4 md:left-32 left-22 top-40'>
-                                        <div className='p-2 hover:bg-neutral-300 duration-700 border border-white overflow-hidden rounded-full cursor-pointer'>
+                                        <div className='p-2 hover:bg-neutral-300 duration-500 border border-white overflow-hidden rounded-full cursor-pointer'>
                                             <button
                                                 className='flex items-center justify-center cursor-pointer'
                                                 onClick={() => handleToggleFavorite(movie)}>
@@ -55,12 +55,12 @@ const AllMovies = ({onEdit}) => {
                                                 )}
                                             </button>
                                         </div>
-                                        <div className='p-2 hover:bg-neutral-300 duration-700 border border-white  rounded-full cursor-pointer'>
+                                        <div className='p-2 hover:bg-neutral-300 duration-1000 border border-white  rounded-full cursor-pointer'>
                                             <MdOutlineDelete
                                                 onClick={() => dispatch(removemovie(movie.id))}
                                                 className='text-white' size={20} />
                                         </div>
-                                        <div className='p-2 hover:bg-neutral-300 duration-700 border border-white  rounded-full cursor-pointer'>
+                                        <div className='p-2 hover:bg-neutral-300 duration-1000 border border-white  rounded-full cursor-pointer'>
                                             <FaRegEdit
                                                 onClick={() => onEdit(movie)}
                                                 className='text-white' size={20} />
@@ -73,6 +73,7 @@ const AllMovies = ({onEdit}) => {
                             </div>
                         ))}
                     </div>
+               
                 </div>
             </>
         )

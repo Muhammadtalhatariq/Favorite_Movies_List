@@ -1,4 +1,4 @@
-import { createSlice, nanoid, createSelector } from '@reduxjs/toolkit'
+import { createSlice, nanoid } from '@reduxjs/toolkit'
 import { toast } from 'react-toastify';
 
 const onNotify = () => toast("Delete Movie");
@@ -14,15 +14,15 @@ export const MovieSlice = createSlice({
   reducers: {
     addmovie: (state, action) => {
       const { movie, urlmovie } = action.payload;
+      
       const movieData = {
         id: nanoid(),
         movieName: movie,
         urlmovie: urlmovie,
         isFavorite: false,
-       
       }
       state.movies.push(movieData)
-    
+
     },
     removemovie: (state, action) => {
       state.movies = state.movies.filter((movie) => movie.id !== action.payload)
@@ -42,10 +42,11 @@ export const MovieSlice = createSlice({
       }
     },
     removeFavorite: (state, action) => {
-      state.Favorites = state.movies.filter(
+      state.movies.isFavorite = state.movies.filter(
         movie => movie.id !== action.payload
       );
     },
+
     editmovie: (state, action) => {
       const { id, movieName, urlmovie } = action.payload;
       const movieToEdit = state.movies.find(movie => movie.id === id);

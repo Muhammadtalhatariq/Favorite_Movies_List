@@ -18,7 +18,7 @@ const TotalMovies = () => {
                     <span className='font-semibold '>Favorites Movies : </span> <span className='text-red-500 font-medium'>{favrtlength}</span>
                 </div>
                 <button
-                    className='bg-green-100 hover:bg-green-400 font-semibold duration-500 cursor-pointer p-2 hover:text-white'
+                    className='bg-green-100 hover:bg-green-400 font-semibold duration-1000 cursor-pointer p-2 hover:text-white'
                     onClick={() => dispatch(toggleshowsfavorites())}>
                     {showOnlyFavorites ? "Show all Movies" : "Favorites Movies"}
                 </button>

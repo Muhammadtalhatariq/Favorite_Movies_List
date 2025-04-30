@@ -9,11 +9,13 @@ import { validation } from "../src/validation"
 import { useDispatch } from 'react-redux'
 
 const App = () => {
+
   const [editingMovie, setEditingMovie] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
 
-  const notify = () => toast("Movie updated successfully");
-  const onnotify = () => toast("Movie added successfully");
+  const updatetoast = () => toast("Movie updated successfully");
+  const addtoast = () => toast("Movie added successfully");
+
   const dispatch = useDispatch()
 
   const handleSubmit = (values) => {
@@ -26,10 +28,10 @@ const App = () => {
         movieName: movie,
         urlmovie: urlmovie
       }));
-      notify();
+      updatetoast()
     } else {
       dispatch(addmovie({ movie, urlmovie }));
-      onnotify();
+      addtoast();
     }
     setIsEditing(false);
     setEditingMovie(null);
@@ -83,12 +85,12 @@ const App = () => {
                   </div>
                 </div>
                 <div className='flex gap-4'>
-                  <button className='md:px-4 w-40 md:w-[300px]  py-1 px-1 bg-green-100 hover:text-white hover:bg-green-400 rounded-lg font-semibold duration-1000 cursor-pointer' type='submit'>{isEditing ? 'Update Movie' : 'Add Movie'}</button>
+                  <button className='md:px-4 w-40 md:w-[300px] py-1 px-1 bg-green-100 hover:text-white hover:bg-green-400 rounded-lg font-semibold duration-1000 cursor-pointer' type='submit'>{isEditing ? 'Update Movie' : 'Add Movie'}</button>
                   {isEditing && (
                     <button
                       type="button"
                       onClick={handleCancel}
-                      className='md:px-4 w-40 md:w-[300px] py-1 px-1 bg-red-100 hover:text-white hover:bg-red-400 rounded-lg font-semibold duration-1000 cursor-pointer'
+                      className='md:px-4 w-40 md:w-[300px] py-1 px-1 bg-green-100 hover:text-white hover:bg-green-400 rounded-lg font-semibold duration-1000 cursor-pointer'
                     >
                       Cancel
                     </button>
