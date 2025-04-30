@@ -46,12 +46,8 @@ const App = () => {
     setEditingMovie(null);
   };
 
-
-
   return (
     <>
-      <div >
-
         <Title />
         <Formik
           initialValues={{
@@ -64,8 +60,6 @@ const App = () => {
         >
           {formik => (
             <Form onSubmit={formik.handleSubmit} >
-
-
               <div className='flex gap-4 items-center flex-col justify-center  flex-wrap '>
                 <div className='flex flex-col gap-4'>
                   <div className='flex flex-col gap-2'>
@@ -102,7 +96,6 @@ const App = () => {
           )}
         </Formik>
         <AllMovies onEdit={handleEdit} />
-      </div>
     </>
   )
 }

@@ -1,15 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { MdOutlineDelete } from "react-icons/md";
 import { useSelector, useDispatch } from 'react-redux';
-import { favoritemovie, removemovie, addFavorite, removeFavorite} from '../features/movies/MovieSlice';
+import { favoritemovie, removemovie, addFavorite, removeFavorite } from '../features/movies/MovieSlice';
 import TotalMovies from './TotalMovies';
-import { FaHeart, FaRegHeart, FaRegEdit }  from 'react-icons/fa';
+import { FaHeart, FaRegHeart, FaRegEdit } from 'react-icons/fa';
+import { Modal } from 'antd';
 
-const AllMovies = ({onEdit}) => {
+const AllMovies = ({ onEdit }) => {
 
+    const [delmovie, setDelmovie] = useState(null)
     const { movies, showOnlyFavorites } = useSelector(state => state.movies);
     const dispatch = useDispatch()
-  
+
     const handleToggleFavorite = (movie) => {
         dispatch(favoritemovie(movie));
         if (!movie.isFavorite) {
@@ -57,7 +59,7 @@ const AllMovies = ({onEdit}) => {
                                         </div>
                                         <div className='p-2 hover:bg-neutral-300 duration-1000 border border-white  rounded-full cursor-pointer'>
                                             <MdOutlineDelete
-                                                onClick={() => dispatch(removemovie(movie.id))}
+                                                onClick={() => setDelmovie(movie.id)}
                                                 className='text-white' size={20} />
                                         </div>
                                         <div className='p-2 hover:bg-neutral-300 duration-1000 border border-white  rounded-full cursor-pointer'>
@@ -65,7 +67,6 @@ const AllMovies = ({onEdit}) => {
                                                 onClick={() => onEdit(movie)}
                                                 className='text-white' size={20} />
                                         </div>
-                                    
                                     </div>
                                     <img className='bg-contain h-60 w-full' src={movie.urlmovie} alt="movie image" />
                                     <h1 className='font-semibold text-neutral-500 hover:text-white bg-green-100 hover:bg-green-400 text-xl p-2 text-center duration-1000'>{movie.movieName}</h1>
@@ -73,7 +74,20 @@ const AllMovies = ({onEdit}) => {
                             </div>
                         ))}
                     </div>
-               
+
+                    <Modal
+                        title="Confirm Delete"
+                        open={!!delmovie}
+                        onOk={() => {
+                            dispatch(removemovie(delmovie));
+                            setDelmovie(null);
+                        }}
+                        onCancel={() => setDelmovie(null)}
+                        okText="Delete"
+                        cancelText="Cancel"
+                    >
+                        <p>Are you sure you want to delete this movie?</p>
+                    </Modal>
                 </div>
             </>
         )
